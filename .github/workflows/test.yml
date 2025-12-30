@@ -53,6 +53,12 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: ${{ env.GO_VERSION }}
+      
+      - name: Install dependencies
+        run: |
+          go get github.com/gen2brain/beeep  # Install beeep library
+          go mod tidy  # Ensure all Go modules are correctly installed
+        
       - name: Run Unit tests.
         run: |
           # Get packages for testing and coverage (including cmd/web for flags_test.go)
